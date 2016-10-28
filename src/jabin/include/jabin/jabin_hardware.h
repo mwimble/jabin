@@ -15,9 +15,13 @@ public:
 
     void readInputs();
 
-    void writeSpeeds();
+    void writeSpeeds(ros::Duration elapsed);
 
 private:
+	bool running_;
+
+	ros::V_string joint_names;
+
     struct Joint {
         double position;
         double velocity;
