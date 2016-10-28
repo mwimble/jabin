@@ -1,5 +1,6 @@
 #include <dynamic_reconfigure/server.h>
 #include <ros/ros.h>
+#include <string>
 #include <time.h>
 
 #include "controller_manager/controller_manager.h"
@@ -12,18 +13,22 @@ int main(int argc, char* argv[]) {
 
     JabinHardware robot(nh);
     controller_manager::ControllerManager cm(&robot, nh);
+    ROS_INFO("[jabin_node] Robot instantiated");
 
     ros::AsyncSpinner spinner(1);
     spinner.start();
 
-    ros::Rate r(10 /*node_params.controller_loop_rate*/);
+    ros::Rate r(1 /*node_params.controller_loop_rate*/);
 
     ros::Time last_time;
     ros::Time current_time;
     ros::Duration elapsed;
     last_time = ros::Time::now();
 
+    ROS_INFO("[jabin_node] About to loop");
+
     while (ros::ok()) {
+    	ROS_INFO("[jabin_node] loop");
         current_time = ros::Time::now();
         elapsed = last_time - current_time;
         last_time = current_time;

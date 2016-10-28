@@ -1,0 +1,21 @@
+<launch>
+  <!--Summary: Start Jabin motor controller software node. -->
+  <!--Overview: This library launch file starts the Jabin motor controller
+      node that controls the robot base. -->
+
+  <!-- to run gdb on the node, provide "doDebug:=true" /-->
+  <arg name="doDebug" default="false" />
+  <arg if="$(arg doDebug)" name="launchPrefix" value="xterm -e gdb -args" />
+  <arg unless="$(arg doDebug)" name="launchPrefix" value="" />
+
+  <!-- Convenience arguments: -->
+  <arg name="node" value="jabin_node" />
+
+  <!-- Optional arguments: -->
+  <arg name="node_name" default="n_$(arg node)" />
+    <!--node_name: The name to assign to the node. -->
+
+  <!-- Start relay node: -->
+  <node name="$(arg node_name)" pkg="jabin" type="$(arg node)" output="screen" launch-prefix="$(arg launchPrefix)" />
+
+</launch>
