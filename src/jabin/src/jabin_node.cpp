@@ -32,11 +32,11 @@ int main(int argc, char* argv[]) {
         current_time = ros::Time::now();
         elapsed = last_time - current_time;
         last_time = current_time;
-        // robot.readInputs();
-        // cm.update(ros::Time::now(), elapsed);
+        robot.readInputs();
+        cm.update(ros::Time::now(), elapsed);
         // robot.setParams(firmware_params);
         // robot.sendParams();
-        // robot.writeSpeeds();
+        robot.writeSpeeds();
 
         r.sleep();
     }
