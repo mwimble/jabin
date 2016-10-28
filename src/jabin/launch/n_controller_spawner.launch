@@ -6,7 +6,6 @@
 		  type="spawner"
 		  respawn="false"
 		  output="screen"
-		  ns="/robot"
 		  args="velocity_controller joint_publisher"
 	/>
 </launch>
