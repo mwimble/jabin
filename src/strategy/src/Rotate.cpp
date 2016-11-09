@@ -4,6 +4,7 @@
 #include "tf/transform_datatypes.h"
 #include <unistd.h>
 
+#include "strategy/GotoCrossing.h"
 #include "strategy/Rotate.h"
 
 using namespace std;
@@ -221,12 +222,16 @@ StrategyFn::RESULT_T Rotate::tick() {
 				cmdVel.angular.z = 0.4;
 				cmdVelPub_.publish(cmdVel);
 				result = RUNNING;
+				if (debug_) {
+					ROS_INFO("[Rotate::tick] keep rotating left, x: %7.4f, z: %7.4f", cmdVel.linear.x, cmdVel.angular.z);
+				}
 			} else {
 				cmdVel.linear.x = 0.0;
 				cmdVel.angular.z = 0.0;
 				cmdVelPub_.publish(cmdVel);
 				result = SUCCESS;
 				strategyContext.needToRotateLeft90 = false;
+				GotoCrossing::Singleton().restartGoal();
 				if (debug_) {
 					ROS_INFO("[Rotate::tick] end of rotate left, startYaw_: %7.4f, lastYaw_: %7.4f", startYaw_, lastYaw_);
 				}
@@ -269,7 +274,7 @@ StrategyFn::RESULT_T Rotate::tick() {
 				cmdVelPub_.publish(cmdVel);
 				result = RUNNING;
 				if (debug_) {
-					ROS_INFO("[Rotate::tick] rotating right, startYaw_: %7.4f, goalYaw_: %7.4f, lastYaw_: %7.4f", startYaw_, goalYaw_, lastYaw_);
+					ROS_INFO("[Rotate::tick] keep rotating right, x: %7.4f, z: %7.4f", cmdVel.linear.x, cmdVel.angular.z);
 				}
 			} else {
 				cmdVel.linear.x = 0.0;
@@ -277,6 +282,7 @@ StrategyFn::RESULT_T Rotate::tick() {
 				cmdVelPub_.publish(cmdVel);
 				result = SUCCESS;
 				strategyContext.needToRotateRight90 = false;
+				GotoCrossing::Singleton().restartGoal();
 				if (debug_) {
 					ROS_INFO("[Rotate::tick] end of rotate right, startYaw_: %7.4f, lastYaw_: %7.4f", startYaw_, lastYaw_);
 				}

@@ -2,6 +2,7 @@
 .DS_Store
 Thumbs.db
 .cache
+.catkin_tools
 .catkin_workspace
 *~
 .project
@@ -19,3 +20,8 @@ src/CMakeLists.txt
 src/teleop_twist_keyboard
 src/xacro
 
+*.png
+jabin/
+logs/
+v-rep/
+xacro/

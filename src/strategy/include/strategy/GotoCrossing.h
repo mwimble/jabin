@@ -18,13 +18,15 @@ private:
 	static const string strategyHasntStarted;
 	static const string strategyLookingForHorizontalLineEnd;
 	static const string strategyLookingForHorizontalLineStart;
+	static const string strategyLookingForVerticalLine;
 	static const string strategyMovingToCenteringPosition;
 	static const string strategySuccess;
 
 	typedef enum {
 		kLOOKING_FOR_HORIZONTAL_LINE_START,
 		kLOOKING_FOR_HORIZONTAL_LINE_END,
-		kMOVING_TO_CENTERING_POSITION
+		kMOVING_TO_CENTERING_POSITION,
+		kFIND_VERTICAL_LINE
 	} STATE;
 
 	STATE state;
@@ -115,13 +117,19 @@ public:
 
 	static GotoCrossing& Singleton();
 
-	string getStateName(STATE state) {
+	static string getStateName(STATE state) {
 		switch (state) {
 			case kLOOKING_FOR_HORIZONTAL_LINE_START: return "kLOOKING_FOR_HORIZONTAL_LINE_START";
 			case kLOOKING_FOR_HORIZONTAL_LINE_END: return "kLOOKING_FOR_HORIZONTAL_LINE_END";
 			case kMOVING_TO_CENTERING_POSITION: return "kMOVING_TO_CENTERING_POSITION";
+			case kFIND_VERTICAL_LINE: return "kFIND_VERTICAL_LINE";
 			default: return "<INVALID GotoCrossing STATE>";
 		}
+	}
+
+	static void restartGoal() {
+		Singleton().state = kFIND_VERTICAL_LINE;
+		Singleton().strategyContext.needToFollowLine = true;
 	}
 
 };
