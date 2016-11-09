@@ -1,0 +1,33 @@
+Header header
+
+int32 sequence
+
+int32 cameraWidth
+int32 cameraHeight
+
+int32 horizontalBottom
+int32 horizontalLeft
+int32 horizontalLength
+bool horizontalToLeft
+bool horizontalToRight
+
+int32 verticalBottom
+int32 verticalLeft
+int32 verticalYlength
+bool verticalToBottom
+bool verticalToTop
+
+int32 horizontalLowerLeftX
+int32 horizontalLowerLeftY
+int32 horizontalUpperRightX
+int32 horizontalUpperRightY
+float64 horizontalCurveA
+float64 horizontalCurveB
+
+int32 verticalLowerLeftX
+int32 verticalLowerLeftY
+int32 verticalUpperRightX
+int32 verticalUpperRightY
+float64 verticalCurveA
+float64 verticalCurveB
+float64 verticalIntercept

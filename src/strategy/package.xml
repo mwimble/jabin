@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
-<package format="2">
-  <name>jabin</name>
-  <version>0.0.1</version>
-  <description>Wimble Robotics Jabin Robot</description>
+<package>
+  <name>strategy</name>
+  <version>0.0.0</version>
+  <description>The strategy package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag --> 
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="mike@webself.com">michaelwimble</maintainer>
+  <maintainer email="pi@todo.todo">pi</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but mutiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/jabin</url> -->
+  <!-- <url type="website">http://wiki.ros.org/strategy</url> -->
 
 
   <!-- Author tags are optional, mutiple are allowed, one per tag -->
@@ -40,22 +40,18 @@
   <!-- Use test_depend for packages you need only for testing: -->
   <!--   <test_depend>gtest</test_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>dynamic_reconfigure</build_depend>
+  <build_depend>geometry_msgs</build_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>rospy</build_depend>
-
-  <exec_depend>diff_drive_controller</exec_depend>
-  <exec_depend>joint_state_controller</exec_depend>
-
-  <depend>controller_manager</depend>
-  <depend>dynamic_reconfigure</depend>
-  <depend>geometry_msgs</depend>
-  <depend>hardware_interface</depend>
-  <depend>nav_msgs</depend>
-  <depend>sensor_msgs</depend>
-  <depend>std_msgs</depend>
-  <depend>tf</depend>
-
-  <test_depend>rostest</test_depend>
+  <build_depend>rosserial_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <run_depend>dynamic_reconfigure</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>rosserial_msgs</run_depend>
+  <run_depend>std_msgs</run_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

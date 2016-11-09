@@ -1,0 +1,34 @@
+<launch>
+	<arg name="doDebug" default="false" />
+	<arg if="$(arg doDebug)" name="launchPrefix" value="xterm -e gdb -args" />
+	<arg unless="$(arg doDebug)" name="launchPrefix" value="" />
+
+	<arg name="cmd_vel_topic_name" default="/cmd_vel" />
+	<arg name="debug_goto_crossing" default="false" />
+	<arg name="debug_line_detector" default="false" />
+	<arg name="debug_rotate" default="false" />
+	<arg name="dontMove" default="false" />
+	<!--arg name="imu_topic_name" default="/imu" /-->
+	<arg name="line_detector_topic_name" default="/lineDetect" />
+	<arg name="odom_topic_name" default="/odom" />
+	<arg name="save_images" default="false" />
+	<arg name="show_image" default="false" />
+
+	<!--include file="$(find farryn_controller)launch/farryn.launch" /-->
+	<!--include file="$(find kaimi_imu)launch/kaimi_imu.launch.xml" /-->
+	<include file="$(find line_detector)launch/line_detector.launch" >
+		<arg name="debug_line_detector" value="$(arg debug_line_detector)" />
+		<arg name="save_images" value="$(arg save_images)" />
+		<arg name="show_image" value="$(arg show_image)" />
+	</include>
+
+	<node pkg="strategy" name="strategy" type="strategy_node" respawn="false" output="screen"  launch-prefix="$(arg launchPrefix)">
+		<param name="cmd_vel_topic_name" value="$(arg cmd_vel_topic_name)" type="string" />
+		<param name="debug_goto_crossing" value="$(arg debug_goto_crossing)" type="bool" />
+		<param name="debug_rotate" value="$(arg debug_rotate)" type="bool" />
+		<param name="dontMove" value="$(arg dontMove)" type="bool" />
+		<!--param name="imu_topic_name" value="$(arg imu_topic_name)" type="string" /-->
+		<param name="line_detector_topic_name" value="$(arg line_detector_topic_name)" type="string" />
+		<param name="odom_topic_name" value="$(arg odom_topic_name)" type="string" />
+	</node>
+</launch>
