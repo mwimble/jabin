@@ -1,0 +1,15 @@
+<launch>
+  <!--Summary: Start Jabin motor controller software node. -->
+  <!--Overview: This library launch file starts the Jabin motor controller
+    node that controls the robot base. -->
+
+<env name="ROSCONSOLE_CONFIG_FILE"  value="$(find jabin)/all_debug.conf"/>
+<arg name="pkg" value="$(find jabin)" />
+
+  <rosparam command="load" file="$(arg pkg)/cfg/base.yaml" />
+
+  <include file="$(arg pkg)/launch/n_robot_state_publisher.launch" />
+  <include file="$(arg pkg)/launch/n_controller_spawner.launch" />
+  <include file="$(arg pkg)/launch/n_jabin.launch" />
+
+</launch>

@@ -1,0 +1,11 @@
+<launch>
+	<!-- Load the default controllers -->
+	<!-- args has names of controllers from base.yaml which should have been loaded to parameter server -->
+	<node name="n_controller_spawner" 
+		  pkg="controller_manager"
+		  type="spawner"
+		  respawn="false"
+		  output="screen"
+		  args="velocity_controller joint_publisher"
+	/>
+</launch>
